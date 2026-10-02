@@ -16,10 +16,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const server = http.createServer(app);
 const uploadDir = process.env.UPLOAD_DIR || './uploads';
-const clientOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
+const rawOrigin = process.env.CLIENT_ORIGIN;
+const clientOrigin =
+  !rawOrigin || rawOrigin === '*' || rawOrigin === 'true'
+    ? true
+    : rawOrigin;
 const port = Number(process.env.PORT) || 4000;
 
 fs.mkdirSync(uploadDir, { recursive: true });
+fs.mkdirSync(path.resolve(__dirname, '../prisma/db'), { recursive: true });
 
 const io = new Server(server, {
   cors: { origin: clientOrigin, credentials: true },
@@ -50,6 +55,6 @@ if (fs.existsSync(clientDist)) {
   });
 }
 
-server.listen(port, () => {
+server.listen(port, '0.0.0.0', () => {
   console.log(`🚀 Vexo سرور روی پورت ${port}`);
 });

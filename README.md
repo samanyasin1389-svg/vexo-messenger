@@ -25,5 +25,12 @@ npm run setup
 npm run build --prefix client
 npm start --prefix server
 ```
-# vexo
-# vexo
+
+## دیپلوی آنلاین (Render)
+
+کد روی GitHub است؛ برای لینک همیشگی موبایل روی [Render](https://render.com) دیپلوی کن:
+
+https://render.com/deploy?repo=https://github.com/samanyasin1389-svg/vexo-messenger
+
+بعد از دیپلوی، لینک `https://vexo-messenger.onrender.com` را روی گوشی باز کن.
+

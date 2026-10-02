@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: vexo-messenger
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: file:./db/prod.db
+      - key: UPLOAD_DIR
+        value: ./uploads
+      - key: CLIENT_ORIGIN
+        value: "*"
+      - key: JWT_SECRET
+        generateValue: true
